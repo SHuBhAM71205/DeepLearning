@@ -40,6 +40,17 @@ def lossFunction():
     
     return 
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+def sigmoidDesh(x):
+    return sigmoid(x)(1-sigmoid(x))
+
+def softmax(x):
+    exp_x = np.exp(x - np.max(x))
+    return exp_x / np.sum(exp_x)
+
+
 #----------------------------||---------------------#
 def activationFunction(Layer_Num:int) -> list: # activate the waited sunmation given by the preActivation
     """
@@ -56,8 +67,16 @@ def activationFunction(Layer_Num:int) -> list: # activate the waited sunmation g
                 Tanh → Output is in range (-1,1).
                 ReLU → Output is in range [0, ∞).
     """
+    z = preactivation[Layer_Num]  # pre-activation for this layer
 
-    pass
+    if(Layer_Num==NO_OF_LAYERS):
+        h= softmax()
+    else:
+        h=sigmoid()
+    
+    activation.append(h)
+    
+    return h
 
 
 def preActivationFunction(Layer_Num:int) -> list: #preactivationfun is use to do the weighted sum of the previous layer output which is activation(prev. layer)
@@ -72,15 +91,15 @@ def preActivationFunction(Layer_Num:int) -> list: #preactivationfun is use to do
                  [a1,a2,a3,.....,an] where n is the number of the neuron in  layer=Layer_Num
                  where the a1 is for the first neuron in layer
     """
-    wL=weights[Layer_Num]
-    bL=biases[Layer_Num]
+    W = weights[Layer_Num]
+    b = biases[Layer_Num]
+    h_prev = activation[Layer_Num - 1]  # previous layer's activation
 
-    hL=activation[Layer_Num-1]
-
-    aL=[]
-    for x,y,z in zip(wL,bL,hL):
-        aL.insert((x*z) + y)
-    pass    
+    # z = W * h_prev + b
+    z = np.dot(W, h_prev) + b
+    preactivation.append(z)
+    
+    return z  
 
 
 #--------------------------------------------------------------------------------------#
@@ -89,7 +108,7 @@ def forwardpropogation()->list:
     for i in range(1,NO_OF_LAYERS):
         preActivationFunction(i)
         activationFunction(i)
-    pass
+
 
 #after predicting the value through the forwardpropogation we want to find the corectness then this is use to calculate the gradients
 def backpropogation():
@@ -108,6 +127,8 @@ activation.append(INPUT)
 count=0
 
 while( count < MAX_ITR ):
-    
+    forwardpropogation()
+    backpropogation()
+
     count+=1
 
