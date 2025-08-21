@@ -1,134 +1,99 @@
-import numpy as np 
+import numpy as np
 
-#global variables 
-MAX_ITR=1000
-NO_OF_LAYERS=3
-NO_OF_OUTPUT=4
-NO_OF_INPUT=4
+# ------------------- Global Constants -------------------
+MAX_ITR = 100000
+NO_OF_LAYERS = 3        # 2 hidden + 1 output
+NO_OF_OUTPUT = 4
+NO_OF_INPUT = 4
+OUTPUT_FUNCTION = "SOFTMAX"
+LEARNING_RATE = 0.01
 
-OUTPUT_FUNCTION="SOFTMAX"
-
-#=======================MATRIX OF THE WEIIGHT , BIAS , PREACTIVATION , ACTIVATION ================#
-
-# the assumption is that the for each layer accept the last the no of the neuron is no_of Input
-   
+# ------------------- Initialize Parameters -------------------
 weights = [np.random.randn(NO_OF_INPUT, NO_OF_INPUT) * 0.01 for _ in range(NO_OF_LAYERS - 1)]
-
 biases = [np.zeros((NO_OF_INPUT, 1)) for _ in range(NO_OF_LAYERS - 1)]
 
-# Output layer weight: (NO_OF_OUTPUT, NO_OF_INPUT)
-
+# Output layer weight & bias
 weights.append(np.random.randn(NO_OF_OUTPUT, NO_OF_INPUT) * 0.01)
-
 biases.append(np.zeros((NO_OF_OUTPUT, 1)))
 
-activation = []
-
-preactivation = []
-
-
-#========================FUNCTIONS===========================#
-def lossFunction(): 
-    """ 
-        l(theta)= SUMATION(ACTUAL_DIST * PREDICTED_DIST)
-
-        arguments:
-
-        return:
-
-    """
-    
-    return 
-
+# ------------------- Helper Functions -------------------
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
-def sigmoidDesh(x):
-    return sigmoid(x)(1-sigmoid(x))
+def sigmoid_derivative(x):
+    s = sigmoid(x)
+    return s * (1 - s)
 
 def softmax(x):
-    exp_x = np.exp(x - np.max(x))
-    return exp_x / np.sum(exp_x)
+    exp_x = np.exp(x - np.max(x))  # stability trick
+    return exp_x / np.sum(exp_x, axis=0, keepdims=True)
 
+def cross_entropy_loss(y_true, y_pred):
+    # y_true: one-hot vector, y_pred: predicted softmax
+    return -np.sum(y_true * np.log(y_pred + 1e-9))
 
-#----------------------------||---------------------#
-def activationFunction(Layer_Num:int) -> list: # activate the waited sunmation given by the preActivation
-    """
-        activationFunction(x)=g(ai(x))
-        g is any function
-        the activation function is assumed to be the sigmoid function
+# ------------------- Forward Propagation -------------------
+def forward_propagation(X):
+    activations = [X]
+    pre_activations = []
 
-        argumet : the layer number for which activation you want to count
-                  [a1,a2,a3,a4,...,an]
-        
-        return : this depend on the function use
+    for i in range(NO_OF_LAYERS):
+        W = weights[i]
+        b = biases[i]
+        Z = np.dot(W, activations[-1]) + b  # pre-activation
+        pre_activations.append(Z)
 
-                Sigmoid → Output is in range (0,1) for each neuron.
-                Tanh → Output is in range (-1,1).
-                ReLU → Output is in range [0, ∞).
-    """
-    z = preactivation[Layer_Num]  # pre-activation for this layer
+        if i == NO_OF_LAYERS - 1:
+            A = softmax(Z)  # output layer
+        else:
+            A = sigmoid(Z)  # hidden layers
 
-    if(Layer_Num==NO_OF_LAYERS):
-        h= softmax()
-    else:
-        h=sigmoid()
-    
-    activation.append(h)
-    
-    return h
+        activations.append(A)
 
+    return activations, pre_activations
 
-def preActivationFunction(Layer_Num:int) -> list: #preactivationfun is use to do the weighted sum of the previous layer output which is activation(prev. layer)
-    """
-        it is the waited sum of the wait with the previous layer output 
+# ------------------- Backpropagation -------------------
+def back_propagation(activations, pre_activations, Y):
+    m = Y.shape[1]  # number of examples
+    grads_w = [None] * NO_OF_LAYERS
+    grads_b = [None] * NO_OF_LAYERS
 
-        ai= (Wi*hi-1)  + bi
+    # Output layer gradient
+    dZ = activations[-1] - Y  # derivative of loss wrt Z for softmax+crossentropy
+    for i in reversed(range(NO_OF_LAYERS)):
+        A_prev = activations[i]
+        grads_w[i] = (1/m) * np.dot(dZ, A_prev.T)
+        grads_b[i] = (1/m) * np.sum(dZ, axis=1, keepdims=True)
 
-        argument : layer number
-        
-        return : vector 
-                 [a1,a2,a3,.....,an] where n is the number of the neuron in  layer=Layer_Num
-                 where the a1 is for the first neuron in layer
-    """
-    W = weights[Layer_Num]
-    b = biases[Layer_Num]
-    h_prev = activation[Layer_Num - 1]  # previous layer's activation
+        if i > 0:  # propagate to previous layer
+            W = weights[i]
+            dA_prev = np.dot(W.T, dZ)
+            dZ = dA_prev * sigmoid_derivative(pre_activations[i-1])
 
-    # z = W * h_prev + b
-    z = np.dot(W, h_prev) + b
-    preactivation.append(z)
-    
-    return z  
+    return grads_w, grads_b
 
+# ------------------- Update Parameters -------------------
+def update_parameters(grads_w, grads_b):
+    for i in range(NO_OF_LAYERS):
+        weights[i] -= LEARNING_RATE * grads_w[i]
+        biases[i] -= LEARNING_RATE * grads_b[i]
 
-#--------------------------------------------------------------------------------------#
-#it is use to do the forward calculation ie input give n output
-def forwardpropogation()->list:
-    for i in range(1,NO_OF_LAYERS):
-        preActivationFunction(i)
-        activationFunction(i)
+# ------------------- Training -------------------
+INPUT = np.array([[0.5], [0.2], [0.1], [0.7]])  # shape (4,1)
+Y = np.array([[1], [0], [0], [0]])  # one-hot target (class 0)
 
+for count in range(MAX_ITR):
+    # Forward pass
+    activations, pre_activations = forward_propagation(INPUT)
 
-#after predicting the value through the forwardpropogation we want to find the corectness then this is use to calculate the gradients
-def backpropogation():
-    
-    pass
+    # Compute loss
+    loss = cross_entropy_loss(Y, activations[-1])
 
+    # Backward pass
+    grads_w, grads_b = back_propagation(activations, pre_activations, Y)
 
+    # Update weights
+    update_parameters(grads_w, grads_b)
 
-#=================================MAIN===================================================#
-INPUT = np.array([[0.5], [0.2], [0.1], [0.7]])  # column vector (4 x 1)
-
-OUTPUT = np.array()
-
-activation.append(INPUT) 
-
-count=0
-
-while( count < MAX_ITR ):
-    forwardpropogation()
-    backpropogation()
-
-    count+=1
-
+    if count % 100 == 0:
+        print(f"Iteration {count}, Loss: {loss}")
