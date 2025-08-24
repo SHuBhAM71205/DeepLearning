@@ -5,7 +5,6 @@ MAX_ITR = 100000
 NO_OF_LAYERS = 3        # 2 hidden + 1 output
 NO_OF_OUTPUT = 4
 NO_OF_INPUT = 4
-OUTPUT_FUNCTION = "SOFTMAX"
 LEARNING_RATE = 0.01
 
 # ------------------- Initialize Parameters -------------------
@@ -69,7 +68,7 @@ def back_propagation(activations, pre_activations, Y):
             W = weights[i]
             dA_prev = np.dot(W.T, dZ)
             dZ = dA_prev * sigmoid_derivative(pre_activations[i-1])
-
+        
     return grads_w, grads_b
 
 # ------------------- Update Parameters -------------------
@@ -78,7 +77,7 @@ def update_parameters(grads_w, grads_b):
         weights[i] -= LEARNING_RATE * grads_w[i]
         biases[i] -= LEARNING_RATE * grads_b[i]
 
-# ------------------- Training -------------------
+# ------------------- Training -------------------      
 INPUT = np.array([[0.5], [0.2], [0.1], [0.7]])  # shape (4,1)
 Y = np.array([[1], [0], [0], [0]])  # one-hot target (class 0)
 
