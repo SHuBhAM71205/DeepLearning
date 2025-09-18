@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <title>CS7015: Deep Learning</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Mitesh M. Khapra Homepage">
+    <meta name="author" content="Mitesh M. Khapra">
+    <link rel="icon" href="https://www.cse.iitm.ac.in/~miteshk/iitmlogo120.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./CS7015_ Deep Learning_files/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="./CS7015_ Deep Learning_files/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <link href="./CS7015_ Deep Learning_files/css" rel="stylesheet">
+    <link href="./CS7015_ Deep Learning_files/css(1)" rel="stylesheet">
+    <style>
+     body {
+       font-family: 'Crimson Text', serif;
+       /*font-family: 'Spectral', serif;*/
+       font-size : 1.75em ;
+       line-height: 28px
+     }
+
+     .header {
+       font-family: 'Crimson Text', serif;
+       /*font-family: 'Spectral', serif;*/
+       font-size : 1.75em ;
+       line-height: 28px
+     }
+     .nametitle {
+         text-align : left ;
+      }
+       @media screen and (max-width: 48em) {
+         .nametitle {
+         text-align: center;
+         }
+       }
+      .box {
+        /*background-color: #F0FFFF;*/
+        width: 100%;
+        border: 1px solid blue;
+        padding: 10px;
+        margin: 10px;
+      }
+
+          .column {
+        float: left;
+        width: 50%;
+    padding: 20px;
+
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    th, td {
+        border-bottom: 1px
+        solid #ddd;
+        padding: 8px;
+    }
+
+    tr:hover {background-color:#f5f5f5;}
+    </style>
+    </head>
+    <body cz-shortcut-listen="true">
+
+        <div class="container">
+            <div class="page-header">
+                <div class="nametitle">
+                    <h1>CS7015: Deep Learning</h1>
+                </div>
+            </div>
+            <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html#pre-requisites">Pre-requisites</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html#evaluation">Evaluation</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html#logistics">Logistics</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html#schedule">Schedule</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html#quizzes">Quizzes/Assignments</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html#next">What Next?</a>
+        </div>
+        <div class="container">
+        <b>Note:</b> The video lectures for this course are now available on youtube
+        </div>
+
+        <!--div class="container">
+            <div class="box">
+                <div class="page-header">
+                    <h2 id="research">Pre-requisites</h2>
+                </div>
+
+            </div>
+        </div-->
+
+        <div class="container">
+            <h2 id="pre-requisites">Pre-requisites</h2><hr>
+            There are no official pre-requisites for this course but it would help if you have done the following courses (preferably in the order mentioned below) :
+            <ul>
+                <li><p>Calculus [<a href="https://ocw.mit.edu/courses/mathematics/18-01-single-variable-calculus-fall-2006/video-lectures/">Online course from MIT</a>]</p></li>
+                <li><p>Linear Algebra [CS6015 or equivalent] | [<a href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/">Online course from MIT</a>]</p></li>
+                <li><p>Probability Theory [CS6015 or equivalent] | [<a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/video-lectures/">Online course from MIT</a>]</p></li>
+                <li><p>Non-linear Optimization [CS5020 or equivalent] | [First Course in Optimization by Prof. Soman (IITB) available on CDEEP]</p></li>
+                <li><p>Pattern Recognition and Machine Learning  [CS5691 or equivalent] |  [<a href="https://www.youtube.com/watch?v=UzxYlbK2c7E">Andrew Ng's ML course</a>]</p></li>
+            </ul>
+            If you can solve most of <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment0.pdf">this assignment</a> then you are ready for this course!
+        </div>
+
+
+        <div class="container">
+            <!--div class="page-header">
+                    <div class="row">
+                        <div class="column">
+                            <div class="box">
+                                <div class="page-header"-->
+                                <h2 id="logistics">Logistics</h2><hr>
+                                <!--/div-->
+                                <ul>
+                                    <li><p><b>Instructor</b>: <a href="http://www.cse.iitm.ac.in/~miteshk/"> Mitesh M. Khapra</a></p></li>
+                                    <li><p><b>When</b>: Jan-May 2018 </p></li>
+                                    <li><p><b>Lectures</b>:  Slot <a href="https://www.iitm.ac.in/timetable">E</a> </p></li>
+                                    <li><p><b>Where</b>: Aryabhatta Hall, CS Building, First Floor</p></li>
+                                    <li><p><b>Teaching Assistants</b>: <a href="http://www.cse.iitm.ac.in/profile.php?arg=MTU5MA==">Purvi Goel</a>, <a href="http://www.cse.iitm.ac.in/profile.php?arg=MTU2Mg==">Raviraj Joshi</a>, <a href="https://www.cse.iitm.ac.in/profile.php?arg=ODEy">Preksha Nema</a>, <a href="http://www.cse.iitm.ac.in/profile.php?arg=MTU4Ng==">Ananya B. Sai</a>, <a href="https://www.cse.iitm.ac.in/profile.php?arg=NDAy">Soham Parikh</a>, <a href="https://www.cse.iitm.ac.in/profile.php?arg=MzE5">Gurneet Singh</a>,
+                <a href="https://www.cse.iitm.ac.in/profile.php?arg=OTM5">Sanchit Agarwal</a>, <a href="https://www.cse.iitm.ac.in/profile.php?arg=MTYwNA==">Shweta Bharadwaj</a>, <a href="http://www.cse.iitm.ac.in/profile.php?arg=MzEx">Mohan Bhambani</a>, <a href="https://www.cse.iitm.ac.in/profile.php?arg=MTYxOA==">Suman Banerjee</a></p></li>
+                                </ul>
+                            <!--/div>
+                        </div>
+                        <div class="column">
+                            <img src="./GD.png" width=100% class="img-responsive img-rounded" alt="Mitesh M. Khapra&#39;s photo" title="Mitesh M. Khapra&#39;s photo" />
+                        </div>
+                    </div>
+                </div-->
+        </div>
+
+        <div class="container">
+            <h2 id="evaluation">Evaluation</h2><hr>
+                60% Assignments | 10% Quiz 1 | 10% Quiz 2 | 20% Endsem
+            
+        </div>
+
+        <div class="container">
+            <!--div class="box">
+                <div class="page-header"-->
+                    <h2 id="schedule">Schedule</h2><hr>
+                <!--/div-->
+                *T = Teaching mode - this version of the slides contains animations (is good for first time viewing) <br>
+                *H = Handout mode - this version of the slides <b><u>will be available soon</u></b> and does not contain animations (is good for revision before exams and for printing) <br>
+                *M = Module (each lecture is broken down into smaller modules)
+                <table border="0" cellpadding="20" cellspacing="100" width="100%" align="center">
+                    <tbody><tr>
+                        <th width="10%" style="text-align:center">Lecture#</th>
+                        <th width="40%" style="text-align:center">Contents</th>
+                        <th width="15%" style="text-align:center">Lecture Slides</th>
+                        <th width="15%" style="text-align:center">Lecture Videos</th>
+                        <th width="30%" style="text-align:center">Extra Reading Material</th>
+                    </tr>
+                    <tr>
+                        <td>Lecture 1</td>
+                        <td> (Partial) History of Deep Learning, Deep Learning Success Stories </td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture1.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture1.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/4TC5s_xNKSs">M1</a> | <a href="https://youtu.be/WpR8eOLUo9Q">M2</a>| <a href="https://youtu.be/DpK_i6iA0i0">M3</a> | <a href="https://youtu.be/6USgwLa-7ks">M4</a> | <a href="https://youtu.be/0DKOUFrP7xI">M5</a>| <a href="https://youtu.be/H_ptjlq8pH0">M6</a> | <a href="https://youtu.be/_z27qjHjqiM">M7</a> | <a href="https://youtu.be/-7l-Pl_pwu4">M8</a>| <a href="https://youtu.be/rSY5YLLcPs8">M9</a></td>
+                        <td><a href="https://arxiv.org/abs/1404.7828">Juergen Schmidhuber, Deep Learning in Neural Networks: An Overview. 2014</a></td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 2</td>
+                        <td> McCulloch Pitts Neuron, Thresholding Logic, Perceptrons, Perceptron Learning Algorithm and Convergence, Multilayer Perceptrons (MLPs), Representation Power of MLPs </td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture2.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture2.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/qQmMp8fL82w">M1</a> | <a href="https://youtu.be/6XhSJbfT1pk">M2</a>| <a href="https://youtu.be/XKnBn1XZpQI">M3</a> | <a href="https://youtu.be/f8tod7wt2Vw">M4</a> | <a href="https://youtu.be/VRcixOuG-TU">M5</a>| <a href="https://youtu.be/vAOI9kTDVoo">M6</a> | <a href="https://youtu.be/AjUgxQNZhck">M7</a> | <a href="https://youtu.be/CJr4Dst0uZE">M8</a></td>
+                        <td>Chapters 1,2,3,4 from <a href="http://page.mi.fu-berlin.de/rojas/neural/neuron.pdf">Neural Networks by Rojas</a></td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 3</td>
+                        <td> Sigmoid Neurons, Gradient Descent, Feedforward Neural Networks, Representation Power of Feedforward Neural Networks</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture3.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture3.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/X4RmokyD3U8">M1</a> | <a href="https://youtu.be/uDcU3ZzH7hs">M2</a>| <a href="https://youtu.be/HnaBcIL2shc">M3</a> | <a href="https://youtu.be/giZD8yzXEZ4">M4</a> | <a href="https://youtu.be/d1K-6b5guh0">M5</a></td>
+                        <td><a href="http://neuralnetworksanddeeplearning.com/chap4.html">http://neuralnetworksanddeeplearning.com/chap4.html</a></td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 4</td>
+                        <td>Feedforward Neural Networks, Backpropagation</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture4.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture4.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/AASR9rOzhhA">M1</a> | <a href="https://youtu.be/4gm4sXPndUY">M2</a> | <a href="https://youtu.be/hMkRDNzH9vs">M3</a> | <a href="https://youtu.be/DSqgn2lAN1M">M4</a> | <a href="https://youtu.be/JSfRBOWp3Es">M5</a> | <a href="https://youtu.be/MDVVUY-sftQ">M6</a> | <a href="https://youtu.be/DirgOcmERwA">M7</a> | <a href="https://youtu.be/Qdh4NEkQRuo">M8</a> | <a href="https://youtu.be/0OHLbVEOq04">M9</a> | <a href="https://youtu.be/sbvv-uQmwVY">M10</a></td>
+                        <td><a href="http://info.usherbrooke.ca/hlarochelle/neural_networks/content.html">See Lecture 2 [Training Neural Networks] by Hugo Larochelle</a></td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 5</td>
+                        <td>Gradient Descent (GD), Momentum Based GD, Nesterov Accelerated GD, Stochastic GD, AdaGrad, RMSProp, Adam</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture5.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture5.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/joKs2EJ9Z8w">M1 and M2</a> | <a href="https://youtu.be/pHarJN7Wo0M">M3</a> | <a href="https://youtu.be/ewN0vFYFJ7A">M4</a> | <a href="https://youtu.be/sV9aiEsXanE">M5</a> | <a href="https://youtu.be/Vc-jG_LdOLw">M6</a> | <a href="https://youtu.be/t5Q2z-MM1X4">M7</a> | <a href="https://youtu.be/CxgYyBut6i0">M8</a> | <a href="https://youtu.be/FKCV76N9Ys0">M9</a> | <a href="https://youtu.be/-0ZMU-gnm2g">M9 part 2</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="http://ruder.io/optimizing-gradient-descent/">http://ruder.io/optimizing-gradient-descent/</a></li>
+                        <li><a href="http://cs231n.github.io/neural-networks-3/">http://cs231n.github.io/neural-networks-3/</a></li>
+                        <li><a href="http://jmlr.org/papers/v12/duchi11a.html">AdaGrad</a></li>
+                        <li><a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">RMSProp</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 6</td>
+                        <td>Eigenvalues and eigenvectors, Eigenvalue Decomposition, Basis, Principal Component Analysis and its interpretations, Singular Value Decomposition</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture6.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture6.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/BTzz3BuYuM8">M1</a> | <a href="https://youtu.be/FsWX2c7Q6Qg">M2</a>| <a href="https://youtu.be/mdZVysybPrk">M3</a> | <a href="https://youtu.be/5eEPs8XS5AQ">M4</a> | <a href="https://youtu.be/_EwqeZcZ9KY">M5</a>| <a href="https://youtu.be/mvljKZtGTj4">M6</a> | <a href="https://youtu.be/tcR5I2pPk3o">M6 part 2</a> | <a href="https://youtu.be/wHHxkWcqokY">M7</a>| <a href="https://youtu.be/xV1Q3go0S1Y">M8</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://www.utdallas.edu/~herve/abdi-awPCA2010.pdf">PCA Tutorial 1</a></li>
+                        <li><a href="https://www.cs.princeton.edu/picasso/mats/PCA-Tutorial-Intuition_jp.pdf">PCA tutorial 2</a></li>
+                        <li><a href="http://www-users.math.umn.edu/~lerman/math5467/svd.pdf">SVD Tutorial 1</a></li>
+                        <li><a href="http://www.cimat.mx/~alram/met_num/clases/Abdi-SVD2007-pretty.pdf">SVD Tutorial 2</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 7</td>
+                        <td>Autoencoders and relation to PCA, Regularization in autoencoders, Denoising autoencoders, Sparse autoencoders, Contractive autoencoders
+                        </td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture7.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture7.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/wPz3MPl5jvY">M1</a> | <a href="https://youtu.be/0ZQxPIwuA4o">M2</a>| <a href="https://youtu.be/mNUAt7umSiw">M3</a> | <a href="https://youtu.be/0n2x_D-ZmmU">M4</a> | <a href="https://youtu.be/REzrCEDMQws">M5</a>| <a href="https://youtu.be/BW7P1fvnAWk">M6</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="http://info.usherbrooke.ca/hlarochelle/neural_networks/content.html">Lecture 6 from Hugo Larochelle's course</a></li>
+                        <li><a href="http://www.jmlr.org/papers/volume11/vincent10a/vincent10a.pdf">Denoising Autoencoders</a></li>
+                        <li><a href="https://web.stanford.edu/class/cs294a/sparseAutoencoder_2011new.pdf">Sparse Autoencoders</a></li>
+                        <li><a href="http://machinelearning.wustl.edu/mlpapers/paper_files/ICML2011Rifai_455.pdf">Contractive Autoencoders</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 8</td>
+                        <td> Bias Variance Tradeoff, L2 regularization, Early stopping, Dataset augmentation, Parameter sharing and tying, Injecting noise at input, Ensemble methods, Dropout</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture8.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture8.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/Y0m136XU65o">M1</a> | <a href="https://youtu.be/gyGMaNUaeic">M2</a>| <a href="https://youtu.be/aVAs2YwiDoA">M2 part 2</a> | <a href="https://youtu.be/y_tQBokE94s">M3</a> | <a href="https://youtu.be/lg4OLAjxRcQ">M4</a>| <a href="https://youtu.be/KHMHOieuJuw">M5</a> | <a href="https://youtu.be/EZ4X5rFzLFE">M6</a> | <a href="https://youtu.be/agGUR06jM_g">M7</a> | <a href="https://youtu.be/TtU9GhLeOk4">M8</a> | <a href="https://youtu.be/zm5cqvfKO-o">M9</a> | <a href="https://youtu.be/qlNDzNjR3eA">M10</a>| <a href="https://youtu.be/qfsacbIe9AI">M11</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="http://www.deeplearningbook.org/contents/regularization.html">Chapter 7 from Deep Learning book</a></li>
+                        <li><a href="https://www.cs.toronto.edu/~hinton/absps/JMLRdropout.pdf">Dropout</a></li>
+                        <li><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Ali Ghodsi's Video Lectures on Regularization</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 9</td>
+                        <td>Greedy Layerwise Pre-training, Better activation functions, Better weight initialization methods, Batch Normalization</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture9.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture9.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/P2x8qi5xT-8">M1</a> | <a href="https://youtu.be/_GRvjpJVr5A">M2</a>| <a href="https://youtu.be/HxKaLyyGq50">M3</a> | <a href="https://youtu.be/1pgahpCZeF0">M4</a> | <a href="https://youtu.be/1XMjfhEFbFA">M5</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/abs/1502.03167">Batch Normalization</a></li>
+                        <li><a href="https://papers.nips.cc/paper/3048-greedy-layer-wise-training-of-deep-networks.pdf">Greedy Layerwise Pre-training</a></li>
+                        <li><a href="https://www.cs.toronto.edu/~hinton/science.pdf">Reducing the Dimensionality of Data with Networks</a></li>
+                        <li><a href="http://www.jmlr.org/papers/v10/larochelle09a.html">Exploring Strategies for Training Deep Neural Networks</a></li>
+                        <li><a href="http://proceedings.mlr.press/v5/erhan09a/erhan09a.pdf">The difficulty of training deep architectures and effect of unsupervised pre-training</a></li>
+                        <li><a href="http://jmlr.org/papers/volume11/erhan10a/erhan10a.pdf">Why does Unsupervised Pre-Training Help?</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 10</td>
+                        <td>Learning Vectorial Representations Of Words</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture10.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture10.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/M2T36PlRv1U">M1</a> | <a href="https://youtu.be/74clhgHhR2M">M2</a>| <a href="https://youtu.be/SSpSk1Io52w">M3</a> | <a href="https://youtu.be/05L1tSvzWHs">M3 part 2</a> | <a href="https://youtu.be/yBmtXtVya9A">M4</a>| <a href="https://youtu.be/XO2GHDm-ZoI">M5</a> | <a href="https://youtu.be/3F6KInYCJxI">M5 part 2</a> | <a href="https://youtu.be/XZUGn36eAgA">M6</a> | <a href="https://youtu.be/ioe1eeEWU0I">M7</a> | <a href="https://youtu.be/zA0U8C_q04M">M8</a> | <a href="https://youtu.be/b0M0AzjpPqc">M9</a> | <a href="https://youtu.be/MBcnPueElDU">M10</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/abs/1402.3722">Deriving Mikiolov's word2vec</a></li>
+                        <li><a href="http://www-personal.umich.edu/~ronxin/pdf/w2vexp.pdf">word2vec parameter learning explained</a></li>
+                        <li><a href="http://ruder.io/word-embeddings-1/">Blog 1</a></li>
+                        <li><a href="http://ruder.io/word-embeddings-softmax/">Blog 2</a></li>
+                        <li><a href="http://ruder.io/secret-word2vec/">Blog 3</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 11</td>
+                        <td>Convolutional Neural Networks, LeNet, AlexNet, ZF-Net, VGGNet, GoogLeNet, ResNet</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture11.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture11.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/yw8xwS15Pf4">M1</a> | <a href="https://youtu.be/7eiYBFladus">M2</a>| <a href="https://youtu.be/PmZp5VtMwLE">M3</a> | <a href="https://youtu.be/9eZN8U-68eI">M3 part 2</a> | <a href="https://youtu.be/53ysOFHCaqI">M4</a>| <a href="https://youtu.be/mHhhXlEB32c">M4 part 2</a> | <a href="https://youtu.be/UukbB6q6CTo">M5</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="http://www.deeplearningbook.org/contents/convnets.html">Chapter 9</a></li>
+                        <li><a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">AlexNet</a></li>
+                        <li><a href="https://arxiv.org/pdf/1311.2901v3.pdf">ZFNet</a></li>
+                        <li><a href="https://arxiv.org/pdf/1409.1556v6.pdf">VGGNet</a></li>
+                        <li><a href="https://adeshpande3.github.io/adeshpande3.github.io/The-9-Deep-Learning-Papers-You-Need-To-Know-About.html">9 Deep Learning papers</a></li>
+                        <li><a href="https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf">GooLeNet</a></li>
+                        <li><a href="https://arxiv.org/pdf/1512.03385v1.pdf">ResNet</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 12</td>
+                        <td> Object Detection, RCNN, Fast RCNN, Faster RCNN, YOLO</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture12.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture12.pdf"> H </a></td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Will be available soon</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/abs/1311.2524">RCNN</a></li>
+                        <li><a href="https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Girshick_Fast_R-CNN_ICCV_2015_paper.pdf">Fast RCNN</a></li>
+                        <li><a href="https://arxiv.org/pdf/1506.01497.pdf">Faster RCNN</a></li>
+                        <li><a href="https://pjreddie.com/media/files/papers/yolo.pdf">YOLO</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 13</td>
+                        <td>Visualizing Convolutional Neural Networks, Guided Backpropagation, Deep Dream, Deep Art, Fooling Convolutional Neural Networks</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture13.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture13.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/nBxy_vzmO_M">M1</a> | <a href="https://youtu.be/XE8O5p5mceA">M2</a>| <a href="https://youtu.be/DaLZRH6D7wo">M3</a> | <a href="https://youtu.be/SPJnlFtw6h0">M4</a> | <a href="https://youtu.be/rcXOEzAuvu4">M5</a>| <a href="https://youtu.be/a4k8YorzUdI">M6</a> | <a href="https://youtu.be/orTNf_R5odY">M7</a> | <a href="https://youtu.be/YHAIrwRVvWg">M8</a> | <a href="https://youtu.be/gctnJbUaW08">M9</a> | <a href="https://youtu.be/zgfcRJYA_kk">M10</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/abs/1311.2524">RCNN(See the section on visualizations)</a></li>
+                        <li><a href="https://arxiv.org/pdf/1311.2901v3.pdf">ZFNet(see the section on experiments)</a></li>
+                        <li><a href="https://arxiv.org/pdf/1412.6806.pdf">Striving for simplicity(Guided Backpropagation)</a></li>
+                        <li><a href="http://yosinski.com/deepvis">DeepVis</a></li>
+                        <li><a href="https://arxiv.org/abs/1312.6034">Deep Inside Convolutional Networks</a></li>
+                        <li><a href="http://yosinski.com/media/papers/Yosinski__2015__ICML_DL__Understanding_Neural_Networks_Through_Deep_Visualization__.pdf">Understanding Convolutional Networks</a></li>
+                        <li><a href="https://www.robots.ox.ac.uk/~vedaldi/assets/pubs/mahendran15understanding.pdf">Understanding Deep Image Representations</a></li>
+                        <li><a href="https://github.com/google/deepdream">DeepDream</a></li>
+                        <li><a href="https://arxiv.org/pdf/1508.06576.pdf">A Neural Algorithm for Artistic Style</a></li>
+                        <li><a href="https://github.com/jcjohnson/neural-style">Neural style</a></li>
+                        <li><a href="https://arxiv.org/abs/1312.6199">Intriguing properties of neural networks</a></li>
+                        <li><a href="https://arxiv.org/abs/1412.1897">Deep Neural Networks are easily fooled</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 14</td>
+                        <td>Recurrent Neural Networks, Backpropagation Through Time (BPTT), Vanishing and Exploding Gradients, Truncated BPTT</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture14.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture14.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/_BBTTS9gx7Q">M1</a> | <a href="https://youtu.be/ym5qG-3kJ10">M2</a>| <a href="https://youtu.be/Xeb6OjnVn8g">M3</a> | <a href="https://youtu.be/EB1SoyivHFU">M4</a> | <a href="https://youtu.be/gZ65vyTNipM">M5</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/pdf/1211.5063.pdf">On the difficulty of training RNNs</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 15</td>
+                        <td>Gated Recurrent Units (GRUs), Long Short Term Memory (LSTM) Cells, Solving the vanidhing gradient problem with LSTMs</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture15.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture15.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/pI-3TreYU18">M1</a> | <a href="https://youtu.be/9TFnjJkfqmA">M2</a>| <a href="https://youtu.be/PMv8C-Ws1b8">M3</a> | <a href="https://youtu.be/dKKPtG-qeaI">M3 part 2</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/abs/1503.04069">LSTM: A Search Space Odyssey</a></li>
+                        <li><a href="https://r2rt.com/written-memories-understanding-deriving-and-extending-the-lstm.html">Understanding Deriving and Extending the LSTM</a></li>
+                        <li><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM Networks</a> (Nice blog)</li>
+                        <li><a href="http://emnlp2014.org/papers/pdf/EMNLP2014179.pdf">Paper which introduced Gated Recurrent Units</a></li>
+                        <li><a href="http://www.bioinf.jku.at/publications/older/2604.pdf">Paper which introduced LSTMs</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 16</td>
+                        <td>Encoder Decoder Models, Attention Mechanism, Attention over images, Hierarchical Attention </td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture16.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture16.pdf"> H </a></td>
+                        <td align="center"><a href="https://youtu.be/7Np_5Q-P8eo">M1</a> | <a href="https://youtu.be/dC_d3iVw6sc">M2</a>| <a href="https://youtu.be/yInilk6x-OY">M3</a> | <a href="https://youtu.be/zqbgsiKBSRI">M3 part 2</a> | <a href="https://youtu.be/hvhqHhrP_AU">M4</a>| <a href="https://youtu.be/mvLBBG7Kvn8">M5</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/pdf/1507.01053.pdf">Attention-based Encoder–Decoder Networks</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 17</td>
+                        <td>Directed Graphical Models</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture17.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture17.pdf"> H </a></td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Will be available soon</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://ai.stanford.edu/~koller/Papers/Koller+al:SRL07.pdf">Graphical Models in a Nutshell</a></li>
+                        </ul> </td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Lecture 18</td>
+                        <td>Markov Networks</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture18.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture18.pdf"> H </a></td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Will be available soon</a></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 19</td>
+                        <td>Using joint distributions for classification and sampling, Latent Variables, Restricted Boltzmann Machines, Unsupervised Learning, Motivation for Sampling</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture19.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture19.pdf"> H </a></td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Will be available soon</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://pdfs.semanticscholar.org/dd13/5a89b5075af5cbef5becaf419457cdd77cc9.pdf">An Introduction to Restricted Boltzmann Machines</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 20</td>
+                        <td> Markov Chains, Gibbs Sampling for training RBMs, Contrastive Divergence for training RBMs</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture20.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture20.pdf"> H </a></td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Will be available soon</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://www.cs.toronto.edu/~hinton/absps/guideTR.pdf">A Practical Guide to Training RBMs</a></li>
+                        <li><a href="https://christian-igel.github.io/paper/TRBMAI.pdf">Training RBMs</a></li>
+                        </ul> </td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>Lecture 21</td>
+                        <td>Variational autoencoders</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture21.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture21.pdf"> H </a></td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Will be available soon</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/abs/1606.05908">Tutorial on Variational Autoencoders by Carl Doersch</a></li>
+                        <li><a href="https://jaan.io/what-is-variational-autoencoder-vae-tutorial/">Blog by Jaan Altosaar</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 22</td>
+                        <td>Autoregressive Models: NADE, MADE, PixelRNN</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture22.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture22.pdf"> H </a></td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Will be available soon</a></td>
+                        <td><ul style="list-style-type:none">
+                        <li><a href="https://arxiv.org/abs/1605.02226">NADE paper</a></li>
+                        <li><a href="https://arxiv.org/abs/1502.03509">MADE paper</a></li>
+                        <li><a href="https://arxiv.org/abs/1601.06759">PixelRNN paper</a></li>
+                        </ul> </td>
+                    </tr>
+                    <tr>
+                        <td>Lecture 23</td>
+                        <td>Generative Adversarial Networks (GANs)</td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Teaching/pdf/Lecture23.pdf">T</a> | <a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/Slides/Handout/Lecture23.pdf"> H </a></td>
+                        <td align="center"><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015_2018.html">Will be available soon</a></td>
+                        <td></td>
+                    </tr>
+                </tbody></table>
+            </div>
+        <!--/div-->
+
+        <div class="container">
+            <h2 id="quizzes">Quizzes/Assigments</h2><hr>
+                <table border="0" cellpadding="20" cellspacing="100" width="100%" align="center">
+                    <tbody><tr>
+                        <th style="text-align:left"></th>
+                        <th style="text-align:left">Topics</th>
+                        <th style="text-align:left">Release Date</th>
+                        <th style="text-align:left">Submission Date</th>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment1.pdf">Assignment 1</a></td>
+                        <td>Derivatives + Probability [Theory]</td>
+                        <td>16-Jan-2018</td>
+                        <td>23-Jan-2018</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment2.pdf">Assignment 2</a></td>
+                        <td>Linear Algebra [Theory]</td>
+                        <td>23-Jan-2018</td>
+                        <td>30-Jan-2018</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Quiz1.pdf">Quiz 1</a></td>
+                        <td>Lectures 1-7</td>
+                        <td>15-Feb-2018</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment3.pdf">Assignment 3</a></td>
+                        <td>Backpropagation [Programming]</td>
+                        <td>30-Jan-2018</td>
+                        <td>14-Feb-2018</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment4.pdf">Assignment 4</a></td>
+                        <td>Word2Vec [Programming]</td>
+                        <td>14-Feb-2018</td>
+                        <td>28-Feb-2018</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment5.pdf">Assignment 5</a></td>
+                        <td>Convolutional Neural Networks [Programming]</td>
+                        <td>28-Feb-2018</td>
+                        <td>16-Mar-2018</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment6.pdf">Assignment 6</a></td>
+                        <td>Probability Refresher [Theory]</td>
+                        <td>14-Mar-2018</td>
+                        <td>23-Mar-2018</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment7.pdf">Assignment 7</a></td>
+                        <td>Recurrent Neural Networks [Programming]</td>
+                        <td>23-Mar-2018</td>
+                        <td>11-Apr-2018</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Quiz2.pdf">Quiz II</a></td>
+                        <td>Lectures 8-15</td>
+                        <td>04-Apr-2018</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Assignment8.pdf">Assignment 8</a></td>
+                        <td>Restricted Boltzmann Machines [Programming]</td>
+                        <td>11-Apr-2018</td>
+                        <td>26-Apr-2018</td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.cse.iitm.ac.in/~miteshk/CS7015/2018/Endsem.pdf">End Sem</a></td>
+                        <td>Lectures 1-23</td>
+                        <td>04-May-2018</td>
+                        <td></td>
+                    </tr>
+                </tbody></table>
+        </div>
+
+        <div class="container">
+            <h2 id="next">What Next?</h2><hr>
+                You may find the following courses to be useful:
+                <ul>
+                    <li><p><a href="http://cs231n.stanford.edu/">Deep Learning for Computer Vision</a> [from Stanford]</p></li>
+                    <li><p><a href="http://cs224d.stanford.edu/">Deep Learning for NLP</a>  [from Stanford]</p></li>
+                </ul>
+
+
+
+            
+        </div>
+
+    
+
+</body></html>
