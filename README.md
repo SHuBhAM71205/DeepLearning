@@ -1,2 +1,1 @@
-This is me just learning DeepLearning from the NPTEL DeepLearning Course and having fun
-
+learning DeepLearning by implementing basic DeepLearning model
